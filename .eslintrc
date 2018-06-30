@@ -1,0 +1,9 @@
+{
+    "extends": "eventbrite-react",
+    "rules": {
+        "no-param-reassign": ["error", { "props": false }],
+        "no-unused-expressions": ["error", { "allowShortCircuit": true }],
+        "new-cap": ["error", { "newIsCapExceptions": ["map"] }]
+    },
+    "env": {"browser" : true, "jest": true}
+}
