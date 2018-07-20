@@ -1,0 +1,9 @@
+:root {
+    --theme-color: #957abe;
+    --theme-color-dark: #634984;
+    --theme-color-light: #c5a8ee;
+    --theme-color-black: #222;
+    --animation-speed: 200ms;
+    --leftNavBar-width: 300px;
+    --content-side-padding: 2%;
+}

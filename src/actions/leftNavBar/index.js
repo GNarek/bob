@@ -1,20 +1,21 @@
-export const changeCountAction = (arg) => {
+export const toggleLeftNavBar = (arg) => {
     switch (arg) {
-        case 'increase':
+        case 'open':
             return {
-                type: 'INCREASE_COUNT',
+                type: 'OPEN',
                 payload: arg,
             };
 
-        case 'decrease':
+        case 'close':
             return {
-                type: 'DECREASE_COUNT',
+                type: 'CLOSE',
                 payload: arg,
             };
 
         default:
             return {
-                type: '',
+                type: 'TOGGLE',
+                payload: arg,
             };
     }
 };

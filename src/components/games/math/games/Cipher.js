@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {changeCountAction} from '../actions/count';
+import {changeCountAction} from '../../../../actions/count';
 
-class Topic extends Component {
+class Cipher extends Component {
     constructor(props) {
         super(props);
 
@@ -23,10 +23,11 @@ class Topic extends Component {
 
         return (
             <div>
+                <h2>Do Cipher</h2>
                 <h3>{match.params.topicId}</h3>
                 <h3>{match.params.userId}</h3>
-                <button onClick={this._handleIncrement}>Increase: {this.props.count}</button>
                 <button onClick={this._handleDecrement}>Decrease: {this.props.count}</button>
+                <button onClick={this._handleIncrement}>Increase: {this.props.count}</button>
             </div>
         );
     }
@@ -40,4 +41,4 @@ const mapDispatchToProps = (dispatch) => ({
     changeCountHandler: (arg) => dispatch(changeCountAction(arg)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Topic);
+export default connect(mapStateToProps, mapDispatchToProps)(Cipher);

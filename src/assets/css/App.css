@@ -1,0 +1,127 @@
+a {
+    text-decoration: none;
+    color: var(--theme-color);
+}
+.App{
+    position: fixed;
+    width: 100%;
+    transition: left  var(--animation-speed);
+    left: 0;
+    min-height: 100%;
+}
+.App::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.75);
+    z-index: 400;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.left-navbar-open .App{
+    left: var(--leftNavBar-width);
+}
+.left-navbar-open .App:before {
+    opacity: 1;
+    visibility: visible;
+}
+
+#LeftNavBar{
+    position: absolute;
+    width: var(--leftNavBar-width);
+    left: calc(-1 * var(--leftNavBar-width));
+    top: 0;
+    bottom: 0;
+    border: 1px solid;
+    transition: left  var(--animation-speed);
+    background-color: #f4f7f6;
+}
+
+.left-navbar-open #LeftNavBar{
+    left: 0;
+}
+
+.App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    position: relative;
+    height: 60px;
+    top: 15px;
+    margin-right: 20px;
+}
+
+.App-title {
+  font-size: 1.5em;
+  display: inline-block;
+  margin: 0;
+  transform: translateY(-25%);
+}
+
+.App-intro {
+  font-size: large;
+}
+.menu li {
+    border-bottom: 1px solid var(--theme-color-light);
+}
+.menu li a {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+    padding: 10px;
+    transition: background-color  var(--animation-speed);
+    padding: 33px 20px;
+}
+.menu li a:hover {
+    background-color: var(--theme-color-light);
+    color: white;
+}
+.menu li[active] a{
+    background-color: var(--theme-color);
+    color: white;
+}
+.menu{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.content{
+    padding: 0 var(--content-side-padding);
+}
+
+.games .menu{
+    display: flex;
+    text-align: center;
+    margin: 0 -2%;
+}
+.games .menu li{
+    flex: 1;
+    border-left: 1px solid var(--theme-color-light);
+}
+.games .menu li:first-child {
+    border-left: none;
+}
+
+#Language.menu {
+    display: flex;
+}
+
+#Language.menu li{
+    flex: 1;
+    text-align: center;
+}
+
+#Language.menu li a{
+    padding: 13px 20px;
+    margin: 20px 0;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
