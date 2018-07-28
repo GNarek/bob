@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import MenuItem from './MenuItem';
 import Languages from './Languages';
+import tr from '../../../translation';
 
 class Menu extends Component {
 
@@ -12,10 +13,10 @@ class Menu extends Component {
             <div id="LeftNavBar">
                 <Languages />
                 <ul id="Menu" className="menu">
-                    <MenuItem title="Home" pathnames={[`/${language}/`, `${language}/home`]} />
-                    <MenuItem title="About" pathnames={[`/${language}/about`]} />
-                    <MenuItem title="Topics" pathnames={[`/${language}/topics`]} />
-                    <MenuItem title="Math" pathnames={[`/${language}/math`]} />
+                    <MenuItem title={tr.t('menu.home')} pathnames={[`/${language}/`, `${language}/home`]} />
+                    <MenuItem title={tr.t('menu.about')} pathnames={[`/${language}/about`]} />
+                    <MenuItem title={tr.t('menu.topics')} pathnames={[`/${language}/topics`]} />
+                    <MenuItem title={tr.t('menu.math')} pathnames={[`/${language}/math`]} />
                 </ul>
             </div>
         );

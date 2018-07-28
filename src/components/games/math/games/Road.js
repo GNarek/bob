@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import roadSocket from '../../../../socket/math/road';
+import tr from '../../../../translation';
 
 class Road extends Component {
     constructor(props) {
@@ -78,19 +79,19 @@ class Road extends Component {
 
     _handleSuccess() {
         this.setState({
-            result: 'Success!',
+            result: tr.t('common.true'),
         });
     }
 
     _handleError() {
         this.setState({
-            result: 'Wrong!',
+            result: tr.t('common.false'),
         });
     }
 
     _handleExpired() {
         this.setState({
-            result: 'Expired!',
+            result: tr.t('common.expired'),
         });
     }
 
@@ -133,18 +134,18 @@ class Road extends Component {
 
         return (
             <div>
-                <h2>Find Road</h2>
+                <h2>{tr.t('page.math.road.title')}</h2>
 
                 <div>{game.problem}</div>
-                <div>Time: {timestamp}</div>
+                <div>{tr.t('common.time')}: {timestamp}</div>
                 <input
                     type="text"
                     value={answer}
                     onChange={this._handleSetAnswer}
                     onKeyPress={this._handleEnter}
                 />
-                <button onClick={this._handleSendAnswer}>Send</button>
-                <button onClick={this._handleNewGame}>New Game</button>
+                <button onClick={this._handleSendAnswer}>{tr.t('button.send')}</button>
+                <button onClick={this._handleNewGame}>{tr.t('button.newGame')}</button>
                 <div>{result}</div>
             </div>
         );

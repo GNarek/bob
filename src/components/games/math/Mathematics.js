@@ -5,10 +5,13 @@ import MenuItem from '../../sections/menu/MenuItem';
 import Road from './games/Road';
 import MathLogic from './games/MathLogic';
 import Cipher from './games/Cipher';
-
-const emptyState = () => <h3>Please select a game.</h3>;
+import tr from '../../../translation';
 
 class Mathematics extends Component {
+
+    selectAGame() {
+        return <h3>{tr.t('page.math.empty')}</h3>;
+    }
 
     render() {
 
@@ -18,9 +21,9 @@ class Mathematics extends Component {
             <div className="games mathematics">
 
                 <ul className="menu">
-                    <MenuItem title="Road" pathnames={[`${match.url}/road`]} />
-                    <MenuItem title="Logic" pathnames={[`${match.url}/mathlogic`]} />
-                    <MenuItem title="Cipher" pathnames={[`${match.url}/cipher`]} />
+                    <MenuItem title={tr.t('page.math.menu.road')} pathnames={[`${match.url}/road`]} />
+                    <MenuItem title={tr.t('page.math.menu.logic')} pathnames={[`${match.url}/mathlogic`]} />
+                    <MenuItem title={tr.t('page.math.menu.cipher')} pathnames={[`${match.url}/cipher`]} />
                 </ul>
 
                 <Route path={`${match.url}/road`} component={Road} />
@@ -30,7 +33,7 @@ class Mathematics extends Component {
                 <Route
                     exact={true}
                     path={match.url}
-                    render={emptyState}
+                    render={this.selectAGame}
                 />
             </div>
         );

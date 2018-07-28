@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import {toggleLeftNavBar} from '../../../actions/leftNavBar';
+import tr from '../../../translation';
 
 import './menuButton.css';
 
@@ -27,7 +28,7 @@ class MenuButton extends Component {
                         <div className="bar" />
                         <div className="bar" />
                     </div>
-                    <span>MENU</span>
+                    <span>{tr.t('menu.menu')}</span>
                 </div>
             </div>
         );
@@ -35,8 +36,12 @@ class MenuButton extends Component {
 }
 
 
+const mapStateToProps = (state) => ({
+    language: state.language,
+});
+
 const mapDispatchToProps = (dispatch) => ({
     toggleLeftNavBarHandler: (arg) => dispatch(toggleLeftNavBar(arg)),
 });
 
-export default connect(null, mapDispatchToProps)(MenuButton);
+export default connect(mapStateToProps, mapDispatchToProps)(MenuButton);

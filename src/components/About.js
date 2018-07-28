@@ -1,8 +1,9 @@
 import React from 'react';
+import tr from '../translation';
 
 const About = () => (
     <div>
-        <h2>About</h2>
+        <h2>{tr.t('page.about')}</h2>
     </div>
 );
 

@@ -1,9 +1,11 @@
 import React from 'react';
 
+import tr from '../translation';
+
 const Home = () => (
     <div>
-        <h2>Home</h2>
-        <div>There should be something interesting.</div>
+        <h2>{tr.t('menu.home')}</h2>
+        <div>{tr.t('page.home')}</div>
     </div>
 );
 

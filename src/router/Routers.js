@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {setLanguage} from '../actions/language';
 import {setUrl} from '../actions/url';
 
+import Login from '../components/Login';
 import Home from '../components/Home';
 import About from '../components/About';
 import Topics from '../components/Topics';
@@ -61,6 +62,7 @@ class Routers extends Component {
 
         return (
             <div>
+                <Route path={`${match.url}/login`} component={Login} />
                 <Route path={`${match.url}/`} component={Home} exact={true} />
                 <Route path={`${match.url}/home`} component={Home} />
                 <Route path={`${match.url}/about`} component={About} />
