@@ -1,33 +1,32 @@
 import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
-
-import {toggleLeftNavBar} from '../../../actions/leftNavBar';
-import {setLanguage} from '../../../actions/language';
-
-import {setUrl} from '../../../actions/url';
+import {inject, observer} from 'mobx-react';
 
 class LanguageItem extends Component {
 
     constructor(props) {
         super(props);
 
-        this._handleToggleLeftNavBar = this._handleToggleLeftNavBar.bind(this);
+        this._handleCloseLeftNavbar = this._handleCloseLeftNavbar.bind(this);
     }
 
-    _handleToggleLeftNavBar() {
+    _handleCloseLeftNavbar() {
+        const {_leftNavbar_, _common_} = this.props;
+
         // Close menu bar
-        this.props.toggleLeftNavBarHandler('close');
+        _leftNavbar_.close();
 
         // Set new url in store
-        this.props.setUrlHandler(this.props.history.location.pathname);
+        _common_.setUrl(this.props.history.location.pathname);
 
         // Set new language in store
-        this.props.setLanguageHandler(this.props.val);
+        _common_.setLanguage(this.props.val);
     }
 
     isActive() {
-        return this.props.val === this.props.language;
+        const {_common_} = this.props;
+
+        return this.props.val === _common_.language;
     }
 
     render() {
@@ -38,22 +37,10 @@ class LanguageItem extends Component {
 
         return (
             <li {...props}>
-                <Link onClick={this._handleToggleLeftNavBar} url={this.props.url} to={pathnames[0]}>{title}</Link>
+                <Link onClick={this._handleCloseLeftNavbar} url={this.props.url} to={pathnames[0]}>{title}</Link>
             </li>
         );
     }
 }
 
-
-const mapStateToProps = (state) => ({
-    url: state.url,
-    language: state.language,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    toggleLeftNavBarHandler: (arg) => dispatch(toggleLeftNavBar(arg)),
-    setUrlHandler: (arg) => dispatch(setUrl(arg)),
-    setLanguageHandler: (arg) => dispatch(setLanguage(arg)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(LanguageItem));
+export default inject('_leftNavbar_', '_common_')(withRouter(observer(LanguageItem)));

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import {inject, observer} from 'mobx-react';
 
-import {toggleLeftNavBar} from '../../../actions/leftNavBar';
 import tr from '../../../translation';
 
 import './menuButton.css';
@@ -11,17 +10,20 @@ class MenuButton extends Component {
     constructor(props) {
         super(props);
 
-        this._handleToggleLeftNavBar = this._handleToggleLeftNavBar.bind(this);
+        this._handleOpenLeftNavbar = this._handleOpenLeftNavbar.bind(this);
     }
 
-    _handleToggleLeftNavBar() {
-        this.props.toggleLeftNavBarHandler();
+    _handleOpenLeftNavbar(e) {
+        const {_leftNavbar_} = this.props;
+
+        e.stopPropagation();
+        _leftNavbar_.open();
     }
 
     render() {
 
         return (
-            <div className="btn-menu" role="menu" onClick={this._handleToggleLeftNavBar}>
+            <div className="btn-menu" role="menu" onClick={this._handleOpenLeftNavbar}>
                 <div>
                     <div className="ico-menu">
                         <div className="bar" />
@@ -35,13 +37,4 @@ class MenuButton extends Component {
     }
 }
 
-
-const mapStateToProps = (state) => ({
-    language: state.language,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    toggleLeftNavBarHandler: (arg) => dispatch(toggleLeftNavBar(arg)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(MenuButton);
+export default inject('_leftNavbar_')(observer(MenuButton));

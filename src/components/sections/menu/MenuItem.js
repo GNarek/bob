@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import {Link, withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
-
-import {toggleLeftNavBar} from '../../../actions/leftNavBar';
-import {setUrl} from '../../../actions/url';
+import {inject, observer} from 'mobx-react';
 
 class MenuItem extends Component {
 
@@ -14,11 +11,13 @@ class MenuItem extends Component {
     }
 
     _handleLinkClick() {
+        const {_leftNavbar_, _common_} = this.props;
+
         // Close menu bar
-        this.props.toggleLeftNavBarHandler('close');
+        _leftNavbar_.close();
 
         // Set new url in store
-        this.props.setUrlHandler(this.props.pathnames[0]);
+        _common_.setUrl(this.props.pathnames[0]);
     }
 
     /**
@@ -58,10 +57,4 @@ class MenuItem extends Component {
     }
 }
 
-
-const mapDispatchToProps = (dispatch) => ({
-    toggleLeftNavBarHandler: (arg) => dispatch(toggleLeftNavBar(arg)),
-    setUrlHandler: (arg) => dispatch(setUrl(arg)),
-});
-
-export default connect(null, mapDispatchToProps)(withRouter(MenuItem));
+export default inject('_leftNavbar_', '_common_')(withRouter(observer(MenuItem)));

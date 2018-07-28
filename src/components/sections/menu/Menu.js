@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {inject, observer} from 'mobx-react';
 
 import MenuItem from './MenuItem';
 import Languages from './Languages';
@@ -7,7 +8,7 @@ import tr from '../../../translation';
 class Menu extends Component {
 
     render() {
-        const {language} = this.props;
+        const {_common_: {language}} = this.props;
 
         return (
             <div id="LeftNavBar">
@@ -23,4 +24,4 @@ class Menu extends Component {
     }
 }
 
-export default Menu;
+export default inject('_common_')(observer(Menu));

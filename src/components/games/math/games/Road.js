@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import {inject, observer} from 'mobx-react';
 
 import roadSocket from '../../../../socket/math/road';
 import tr from '../../../../translation';
@@ -20,23 +20,18 @@ class Road extends Component {
         this.language = props.language;
     }
 
-    state = {
-        timestamp: 0,
-        game: {},
-        answer: '',
-        result: '',
-    };
-
     componentDidMount() {
+        const {_common_} = this.props;
 
-        this.language = this.props.language;
+        this.language = _common_.language;
         this.initNewGame(this.props);
     }
 
     componentWillReceiveProps(nextProps) {
+        const {_common_} = nextProps;
 
-        if(this.language !== nextProps.language) {
-            this.language = nextProps.language;
+        if(this.language !== _common_.language) {
+            this.language = _common_.language;
 
             this.removeGame();
             this.initNewGame(nextProps);
@@ -48,10 +43,12 @@ class Road extends Component {
     }
 
     initNewGame(props) {
-        const params = {lng: props.language};
+        const {_common_, _road_} = props;
+
+        const params = {lng: _common_.language};
         const listeners = {
-            onGame: this.setGame,
-            onTime: this.setTime,
+            onGame: _road_.setGame,
+            onTime: _road_.setTime,
             onSuccess: this._handleSuccess,
             onError: this._handleError,
             onExpired: this._handleExpired,
@@ -61,9 +58,10 @@ class Road extends Component {
     }
 
     removeGame() {
+        const {_road_} = this.props;
         const listeners = {
-            onGame: this.setGame,
-            onTime: this.setTime,
+            onGame: _road_.setGame,
+            onTime: _road_.setTime,
             onSuccess: this._handleSuccess,
             onError: this._handleError,
             onExpired: this._handleExpired,
@@ -78,47 +76,48 @@ class Road extends Component {
     }
 
     _handleSuccess() {
-        this.setState({
-            result: tr.t('common.true'),
-        });
+        const {_road_} = this.props;
+        const result = tr.t('common.true');
+
+        _road_.setResult(result);
     }
 
     _handleError() {
-        this.setState({
-            result: tr.t('common.false'),
-        });
+        const {_road_} = this.props;
+        const result = tr.t('common.false');
+
+        _road_.setResult(result);
     }
 
     _handleExpired() {
-        this.setState({
-            result: tr.t('common.expired'),
-        });
+        const {_road_} = this.props;
+        const result = tr.t('common.expired');
+
+        _road_.setResult(result);
     }
 
     setGame(game) {
-        this.setState({
-            game,
-            answer: '',
-            result: '',
-        });
+        const {_road_} = this.props;
+
+        _road_.setGame(game);
     }
 
-    setTime(timestamp) {
-        this.setState({
-            timestamp
-        });
+    setTime(time) {
+        const {_road_} = this.props;
+
+        _road_.setTime(time);
     }
 
     _handleSetAnswer(event) {
+        const {_road_} = this.props;
         const answer = event.target.value;
 
-        this.setState({
-            answer
-        });
+        _road_.setAnswer(answer);
     }
 
     _handleSendAnswer() {
-        const answer = parseInt(this.state.answer, 10);
+        const {_road_} = this.props;
+        const answer = parseInt(_road_.answer, 10);
 
         roadSocket.emit(':answer', {answer});
     }
@@ -130,14 +129,14 @@ class Road extends Component {
     }
 
     render() {
-        const {game, timestamp, answer, result} = this.state;
+        const {_road_: {game, time, answer, result}} = this.props;
 
         return (
             <div>
                 <h2>{tr.t('page.math.road.title')}</h2>
 
                 <div>{game.problem}</div>
-                <div>{tr.t('common.time')}: {timestamp}</div>
+                <div>{tr.t('common.time')}: {time}</div>
                 <input
                     type="text"
                     value={answer}
@@ -152,8 +151,4 @@ class Road extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    language: state.language,
-});
-
-export default connect(mapStateToProps, null)(Road);
+export default inject('_common_', '_road_')(observer(Road));
