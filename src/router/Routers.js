@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
-
-import {setLanguage} from '../actions/language';
-import {setUrl} from '../actions/url';
+import {inject, observer} from 'mobx-react';
 
 import Login from '../components/Login';
 import Home from '../components/Home';
@@ -39,15 +36,17 @@ class Routers extends Component {
     }
 
     setUrl(props) {
+        const {_common_} = this.props;
         const url = props.location.pathname;
 
-        this.props.setUrlHandler(url);
+        _common_.setUrl(url);
     }
 
     setLanguage(props) {
+        const {_common_} = this.props;
         const language = props.match.params.language || this.defaultLanguage;
 
-        this.props.setLanguageHandler(language);
+        _common_.setLanguage(language);
     }
 
     render() {
@@ -73,9 +72,5 @@ class Routers extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-    setLanguageHandler: (arg) => dispatch(setLanguage(arg)),
-    setUrlHandler: (arg) => dispatch(setUrl(arg)),
-});
 
-export default connect(null, mapDispatchToProps)(Routers);
+export default inject('_leftNavbar_', '_common_')(observer(Routers));

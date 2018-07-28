@@ -1,26 +1,15 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-
+import {inject, observer} from 'mobx-react';
 
 import LanguageItem from './LanguageItem';
-import {toggleLeftNavBar} from '../../../actions/leftNavBar';
 
 class Languages extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this._handleToggleLeftNavBar = this._handleToggleLeftNavBar.bind(this);
-    }
-
-    _handleToggleLeftNavBar() {
-        this.props.toggleLeftNavBarHandler('close');
-    }
-
-
     render() {
-        const url = this.props.url.substr(3);
+        const {_common_} = this.props;
+
+        const url = _common_.url.substr(3);
 
         return (
             <ul id="Language" className="menu">
@@ -32,12 +21,5 @@ class Languages extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    url: state.url,
-});
 
-const mapDispatchToProps = (dispatch) => ({
-    toggleLeftNavBarHandler: (arg) => dispatch(toggleLeftNavBar(arg)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Languages));
+export default inject('_common_')(withRouter(observer(Languages)));

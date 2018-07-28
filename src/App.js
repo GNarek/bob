@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import {Provider} from 'mobx-react';
 
-import rootReducer from './reducers';
+import {_common_, _leftNavbar_, _road_} from './stores';
 import Body from './components/sections/body/Body';
 import './assets/css/App.css';
 
-const store = createStore(rootReducer);
+const stores = {_common_, _leftNavbar_, _road_};
 
 class App extends Component {
     render() {
         return (
-            <Provider store={store}>
+            <Provider {...stores}>
                 <Body />
             </Provider>
         );
