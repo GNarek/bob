@@ -1,9 +1,13 @@
 :root {
-    --theme-color: #957abe;
-    --theme-color-dark: #634984;
-    --theme-color-light: #c5a8ee;
+    --theme-color: #4bad9f;
+    --theme-color-rgb: 75,173,159;
+    --theme-color-dark: #1b7d6f;
+    --theme-color-light: #7bddcf;
+    --theme-color-2: #00a5af;
+    --theme-color-2-dark: #00555f;
     --theme-color-black: #222;
     --animation-speed: 200ms;
     --leftNavBar-width: 300px;
     --content-side-padding: 2%;
+    --header-height: 86px;
 }

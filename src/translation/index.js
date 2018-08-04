@@ -30,6 +30,23 @@ class Translation {
 
     initTranslations() {
         this.polyglot.extend({
+            errors: {
+                email: {
+                    en: 'Email is not valid',
+                    ru: 'Неправильный адрес электронной почты',
+                    hy: 'Էլեկտրոնային հասցեն սխալ է',
+                },
+                password: {
+                    en: 'Password must be at least %{count} char',
+                    ru: 'Пароль должен быть не менее %{count} символов',
+                    hy: 'Գաղտնաբառը պետք է լինի առնվազն %{count} տառ',
+                },
+                oops: {
+                    en: 'Oops! Something went wrong. Please try again',
+                    ru: 'Ой! Что-то пошло не так. Пожалуйста повторите еще раз.  ',
+                    hy: 'Վայ`, ինչվոր բան են չեղավ. Նորից պորցեք',
+                },
+            },
             common: {
                 time: {
                     en: 'Time',

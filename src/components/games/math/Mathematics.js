@@ -20,7 +20,7 @@ class Mathematics extends Component {
         return(
             <div className="games mathematics">
 
-                <ul className="menu">
+                <ul className="menu sub-menu horizontal-menu">
                     <MenuItem title={tr.t('page.math.menu.road')} pathnames={[`${match.url}/road`]} />
                     <MenuItem title={tr.t('page.math.menu.logic')} pathnames={[`${match.url}/mathlogic`]} />
                     <MenuItem title={tr.t('page.math.menu.cipher')} pathnames={[`${match.url}/cipher`]} />

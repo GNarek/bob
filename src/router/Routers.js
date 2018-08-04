@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Route, Redirect} from 'react-router-dom';
+import {Route, Redirect, withRouter} from 'react-router-dom';
 import {inject, observer} from 'mobx-react';
 
 import Login from '../components/Login';
@@ -50,19 +50,30 @@ class Routers extends Component {
     }
 
     render() {
+        const {match, location, _auth_} = this.props;
+
         // If url don't include language, create new url with defaul language and redirect
-        if(!this.props.match.params.language) {
-            const urlWithLanguage = `/${this.defaultLanguage}${this.props.location.pathname}`;
+        if(!match.params.language) {
+            const urlWithLanguage = `/${this.defaultLanguage}${location.pathname}`;
 
             return <Redirect to={urlWithLanguage} />;
         }
 
-        const {match} = this.props;
+        // If user is not logged-in and is not in login page: redirect to login page
+        if(!_auth_.isLoggedIn && location.pathname !== `/${match.params.language}/login`) {
+
+            return <Redirect to="/login" />;
+        }
+
+        // If user is logged-in and is in login page: redirect to home page
+        if(_auth_.isLoggedIn && location.pathname === `/${match.params.language}/login`) {
+            return <Redirect to="/home" />;
+        }
 
         return (
             <div>
-                <Route path={`${match.url}/login`} component={Login} />
                 <Route path={`${match.url}/`} component={Home} exact={true} />
+                <Route path={`${match.url}/login`} component={Login} />
                 <Route path={`${match.url}/home`} component={Home} />
                 <Route path={`${match.url}/about`} component={About} />
                 <Route path={`${match.url}/topics`} component={Topics} />
@@ -73,4 +84,4 @@ class Routers extends Component {
 }
 
 
-export default inject('_leftNavbar_', '_common_')(observer(Routers));
+export default inject('_leftNavbar_', '_common_', '_auth_')(withRouter(observer(Routers)));
