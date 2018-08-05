@@ -79,6 +79,56 @@ const AuthStore = types
 
         },
 
+        async register(firstName, lastName, email, password) {
+            const url = `${configs.apiUrl}/${_common_.language}/register`;
+            const data = {
+                user: {
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                },
+            };
+            const options = {
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                },
+                method: 'POST',
+                body: JSON.stringify(data),
+            };
+
+            const response = await requestService.getRequest(url, options);
+
+            if(response && response.status) {
+
+                if(response.status === 'success') {
+                    self.loginSuccess(response.data);
+
+                    return {
+                        status: 'success',
+                        error: null,
+                        data: null,
+                    };
+                }
+
+                self.loginFailed();
+
+                return response;
+            }
+
+            self.loginFailed();
+
+            return {
+                status: 'error',
+                error: {
+                    errorCode: '',
+                    errorMessage: tr.t('errors.oops'),
+                },
+                data: null,
+            };
+
+        },
+
         logout() {
             localStorage.clear();
             self.user = {};

@@ -5,9 +5,8 @@
     transition: color  var(--animation-speed);
     color: white;
 }
-.btn-menu:hover span {
-    transition: color  var(--animation-speed);
-    color: var(--theme-color);
+.btn-menu:hover{
+    box-shadow: 0px 0px 35px -8px #00757f;
 }
 
 .ico-menu {
@@ -35,8 +34,4 @@
     transition: background-color var(--animation-speed);
     border-radius: 2px;
     overflow: hidden;
-}
-.btn-menu:hover .ico-menu .bar {
-    transition: background-color  var(--animation-speed);
-    background-color: var(--theme-color);
 }

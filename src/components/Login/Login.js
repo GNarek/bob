@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {inject, observer} from 'mobx-react';
-import {withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 
 import tr from '../../translation';
 
@@ -12,6 +12,7 @@ class Login extends Component {
         this._handleSubmit = this._handleSubmit.bind(this);
         this.setEmailRef = this.setEmailRef.bind(this);
         this.setPasswordRef = this.setPasswordRef.bind(this);
+        this._handleRegiterLinkClick = this._handleRegiterLinkClick.bind(this);
     }
 
     componentWillReceiveProps(props) {
@@ -40,6 +41,13 @@ class Login extends Component {
 
     setPasswordRef(input) {
         this.passwordInput = input;
+    }
+
+    _handleRegiterLinkClick() {
+        const {_common_} = this.props;
+
+        // Set new url in store
+        _common_.setUrl(`/${_common_.language}/register`);
     }
 
     render() {
@@ -75,6 +83,10 @@ class Login extends Component {
                             <button>{tr.t('label.login')}</button>
                         </div>
                     </form>
+                </div>
+
+                <div id="registerLinkWrapper">
+                    <Link className="register-link" onClick={this._handleRegiterLinkClick} to={`/${_common_.language}/register`}>{tr.t('page.register')}</Link>
                 </div>
             </div>
         );

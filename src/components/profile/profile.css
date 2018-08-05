@@ -55,7 +55,7 @@
     cursor: pointer;
 }
 .profile-menu-item:hover {
-    background: var(--theme-color-2-dark);
+    background: var(--theme-color);
 }
 .profile-menu-item:first-child {
     border-top: none;

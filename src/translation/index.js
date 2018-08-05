@@ -36,6 +36,16 @@ class Translation {
                     ru: 'Неправильный адрес электронной почты',
                     hy: 'Էլեկտրոնային հասցեն սխալ է',
                 },
+                firstName: {
+                    en: 'First name must be at least %{count} char',
+                    ru: 'Имя должен быть не менее %{count} символов',
+                    hy: 'Անունը պետք է լինի առնվազն %{count} տառ',
+                },
+                lastName: {
+                    en: 'Last name must be at least %{count} char',
+                    ru: 'Фамилия должен быть не менее %{count} символов',
+                    hy: 'Ազգանունը պետք է լինի առնվազն %{count} տառ',
+                },
                 password: {
                     en: 'Password must be at least %{count} char',
                     ru: 'Пароль должен быть не менее %{count} символов',
@@ -102,6 +112,11 @@ class Translation {
                     en: 'Log in',
                     ru: 'Вход',
                     hy: 'Մուտք գործել',
+                },
+                register: {
+                    en: 'Register',
+                    ru: 'Регистрация',
+                    hy: 'Գրանցվել',
                 },
                 home: {
                     en: 'There should be something interesting.',
@@ -174,6 +189,21 @@ class Translation {
                     en: 'Log in',
                     ru: 'Вход',
                     hy: 'Մուտք գործել',
+                },
+                register: {
+                    en: 'Register',
+                    ru: 'Регистрация',
+                    hy: 'Գրանցվել',
+                },
+                firstName: {
+                    en: 'First name',
+                    ru: 'Имя',
+                    hy: 'Անուն',
+                },
+                lastName: {
+                    en: 'Last name',
+                    ru: 'Фамилия',
+                    hy: 'Ազգանուն',
                 },
             },
         });

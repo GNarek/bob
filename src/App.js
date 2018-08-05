@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {Provider} from 'mobx-react';
 
-import {_common_, _leftNavbar_, _road_, _login_, _auth_} from './stores';
+import {_common_, _leftNavbar_, _road_, _login_, _auth_, _register_} from './stores';
 import Body from './components/sections/body/Body';
 import './assets/css/App.css';
 
-const stores = {_common_, _leftNavbar_, _road_, _login_, _auth_};
+const stores = {_common_, _leftNavbar_, _road_, _login_, _auth_, _register_};
 
 class App extends Component {
     componentDidMount() {

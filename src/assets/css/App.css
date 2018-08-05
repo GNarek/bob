@@ -1,6 +1,6 @@
 body {
     background-color: var(--theme-color-2);
-    background-image: url(http://ec.europa.eu/education/sites/education/files/education-summit-background-turquoise-main-opt_3.png);
+    background-image: url('../images/bg.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom;
@@ -94,7 +94,7 @@ a {
     background-color: var(--theme-color-2);
 }
 .menu li a:hover {
-    background-color: var(--theme-color-light);
+    background-color: var(--theme-color);
     color: white;
 }
 .menu li[active] a{

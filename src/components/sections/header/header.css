@@ -11,6 +11,7 @@
     position: absolute;
     height: 100%;
     text-transform: uppercase;
+    padding: 0 15px;
 }
 #header .btn-menu > div {
     transform: translateY(200%);

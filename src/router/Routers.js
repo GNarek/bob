@@ -3,6 +3,7 @@ import {Route, Redirect, withRouter} from 'react-router-dom';
 import {inject, observer} from 'mobx-react';
 
 import Login from '../components/Login';
+import Register from '../components/Register';
 import Home from '../components/Home';
 import About from '../components/About';
 import Topics from '../components/Topics';
@@ -60,13 +61,13 @@ class Routers extends Component {
         }
 
         // If user is not logged-in and is not in login page: redirect to login page
-        if(!_auth_.isLoggedIn && location.pathname !== `/${match.params.language}/login`) {
+        if(!_auth_.isLoggedIn && location.pathname !== `/${match.params.language}/login` && location.pathname !== `/${match.params.language}/register`) {
 
             return <Redirect to="/login" />;
         }
 
-        // If user is logged-in and is in login page: redirect to home page
-        if(_auth_.isLoggedIn && location.pathname === `/${match.params.language}/login`) {
+        // If user is logged-in and is in login or register page: redirect to home page
+        if(_auth_.isLoggedIn && (location.pathname === `/${match.params.language}/login` || location.pathname === `/${match.params.language}/register`)) {
             return <Redirect to="/home" />;
         }
 
@@ -74,6 +75,7 @@ class Routers extends Component {
             <div>
                 <Route path={`${match.url}/`} component={Home} exact={true} />
                 <Route path={`${match.url}/login`} component={Login} />
+                <Route path={`${match.url}/register`} component={Register} />
                 <Route path={`${match.url}/home`} component={Home} />
                 <Route path={`${match.url}/about`} component={About} />
                 <Route path={`${match.url}/topics`} component={Topics} />
