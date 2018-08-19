@@ -8,6 +8,9 @@ import Home from '../components/Home';
 import About from '../components/About';
 import Topics from '../components/Topics';
 import Mathematics from '../components/games/math/Mathematics';
+import History from '../components/games/History';
+import Rating from '../components/games/Rating';
+import Geometry from '../components/games/Geometry';
 
 
 class Routers extends Component {
@@ -80,6 +83,9 @@ class Routers extends Component {
                 <Route path={`${match.url}/about`} component={About} />
                 <Route path={`${match.url}/topics`} component={Topics} />
                 <Route path={`${match.url}/math`} component={Mathematics} />
+                <Route path={`${match.url}/history`} component={History} />
+                <Route path={`${match.url}/rating`} component={Rating} />
+                <Route path={`${match.url}/geometry`} component={Geometry} />
             </div>
         );
     }

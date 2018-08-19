@@ -1,5 +1,6 @@
 #header {
     position: relative;
+    /* width: 100%; */
     background-color: var(--theme-color-2);
     padding: 0 var(--content-side-padding);
     color: white;

@@ -4,7 +4,8 @@
         "no-param-reassign": ["error", { "props": false }],
         "no-unused-expressions": ["error", { "allowShortCircuit": true }],
         "new-cap": ["error", { "newIsCapExceptions": ["map"] }],
-        'jsx-a11y/onclick-has-role': false
+        "react/no-danger": false,
+        "jsx-a11y/onclick-has-role": false
     },
     "env": {"browser" : true, "jest": true}
 }

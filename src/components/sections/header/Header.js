@@ -14,7 +14,10 @@ class Header extends Component {
             <header id="header" className="App-header">
                 <MenuButton />
                 <img src={logo} className="App-logo" alt="logo" />
-                <h1 className="App-title">BOB</h1>
+                <div className="App-title-wrapper">
+                    <h1 className="App-title">M<div className="logo-eye logo-eye-left" /><div className="logo-eye logo-eye-right" />lay</h1>
+                    <div className="smile" />
+                </div>
                 <Profile />
             </header>
         );

@@ -21,6 +21,8 @@ class MenuButton extends Component {
     }
 
     render() {
+        // Trick to force to re-render component
+        const {_common_: {language}} = this.props; // eslint-disable-line
 
         return (
             <div className="btn-menu" role="menu" onClick={this._handleOpenLeftNavbar}>
@@ -37,4 +39,4 @@ class MenuButton extends Component {
     }
 }
 
-export default inject('_leftNavbar_')(observer(MenuButton));
+export default inject('_leftNavbar_', '_common_')(observer(MenuButton));

@@ -105,6 +105,21 @@ class Translation {
                     ru: 'Математика',
                     hy: 'Մաթեմ',
                 },
+                history: {
+                    en: 'Results',
+                    ru: 'Результаты',
+                    hy: 'Արդյունքները',
+                },
+                rating: {
+                    en: 'Rating',
+                    ru: 'Рейтинг',
+                    hy: 'Վարկանիշ',
+                },
+                geometry: {
+                    en: 'Geometry',
+                    ru: 'Геометрия',
+                    hy: 'Երկրաչափություն',
+                },
             },
 
             page: {

@@ -17,6 +17,9 @@ class Menu extends Component {
                     <MenuItem title={tr.t('menu.home')} pathnames={[`/${language}/`, `${language}/home`]} />
                     <MenuItem title={tr.t('menu.about')} pathnames={[`/${language}/about`]} />
                     <MenuItem title={tr.t('menu.topics')} pathnames={[`/${language}/topics`]} />
+                    <MenuItem title={tr.t('menu.history')} pathnames={[`/${language}/history`]} />
+                    <MenuItem title={tr.t('menu.geometry')} pathnames={[`/${language}/geometry`]} />
+                    <MenuItem title={tr.t('menu.rating')} pathnames={[`/${language}/rating`]} />
                     <MenuItem title={tr.t('menu.math')} pathnames={[`/${language}/math`]} />
                 </ul>
             </div>
